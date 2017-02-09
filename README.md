@@ -2,4 +2,5 @@
 
 - clone repo
 - navigate to project folder in terminal
-- run `pip install -t app/lib -r requirements.txt`
+- ensure local python runtime is >= v3.5 
+- run `pip install -t app/lib -r requirements.txt`. Currently, this will install DoCplex, the intermediary library for interacting with the CPLEX optimisation engine, and SciPy, a python machine learning library
