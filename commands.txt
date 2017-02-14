@@ -1,0 +1,7 @@
+DB Connection Details:
+identifier: y3optim
+user: limshiq
+pw: awesomeSQ
+port: 5432
+
+psql --host=y3optim.cnlc0eowtsp7.ap-southeast-1.rds.amazonaws.com --port=5432 --username=limshiq --password --dbname=y3optim
