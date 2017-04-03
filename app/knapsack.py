@@ -49,22 +49,30 @@ def knapsack(items, maxweight, ilist):
     i = len(items)
     j = maxweight
 
-    print(ilist)
-    temp = []
+    # print(ilist)
+    # temp = []
 
-    for o in ilist:
-        temp.append(list(o))
-    print(temp)
+    # for o in ilist:
+    #     temp.append(list(o))
+    # print(temp)
+
+    # while i > 0:
+    #     if bestvalues[i][j] != bestvalues[i - 1][j]:
+    #         reconstruction.append(temp[i - 1])
+    #         j -= temp[i - 1][1]
+    #     i -= 1
 
     while i > 0:
         if bestvalues[i][j] != bestvalues[i - 1][j]:
-            reconstruction.append(temp[i - 1])
-            j -= temp[i - 1][1]
+            reconstruction.append(ilist[i - 1])
+            j -= int(ilist[i - 1][1])
         i -= 1
 
     # Reverse the reconstruction list, so that it is presented
     # in the order that it was given
     reconstruction.reverse()
+
+    # print(bestvalues)
 
     # Return the best value, and the reconstruction list
     return bestvalues[len(items)][maxweight], reconstruction
@@ -80,14 +88,16 @@ if __name__ == '__main__':
         lines = f.readlines()
 
     maxweight = int(lines[0])
-    items = [map(int, line.split()) for line in lines[1:]]
-    ilist = [map(int, line.split()) for line in lines[1:]]
+    items = [map(int, line.split()[0:2]) for line in lines[1:]]
+    # ilist = [map(int, line.split()) for line in lines[1:]]
+    ilist = [line.split() for line in lines[1:]]
 
     bestvalue, reconstruction = knapsack(items, maxweight, ilist)
 
     print('Best possible value: {0}'.format(bestvalue))
+    print('Cost:', sum(int(row[1]) for row in reconstruction))
     print('Items:')
-    for value, weight in reconstruction:
-        print('V: {0}, W: {1}'.format(value, weight))
+    for value, weight, itype, cat, desc in reconstruction:
+        print('V: {0}, W: {1}, T: {2}, C: {3}, D: {4}'.format(value, weight, itype, cat, desc))
 
 
