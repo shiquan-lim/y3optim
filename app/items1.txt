@@ -1,11 +1,11 @@
 165
-92 23
-57 31
-49 29
-68 44
-60 53
-43 38
-67 63
-84 85
-87 89
-72 82
+92 23 Main d d
+57 31 Side d d
+49 29 Main d d
+68 44 Main d d
+60 53 Drink d d
+43 38 Drink d d
+67 63 Side d d
+84 85 Drink d d
+87 89 Main d d
+72 82 Side d d
