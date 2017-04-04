@@ -1,14 +1,10 @@
-# data.py
-# This script transforms the raw data into the following tables
-#
-# ....
-
 import pandas as pd
 import numpy as np
+from sqlalchemy import create_engine
 from datetime import datetime
 
 # pull in raw data file
-file = '../data/data.csv'
+file = '../data/data_final.csv'
 transaction_df = pd.read_csv(file, engine='c',parse_dates={'transaction_datetime':[4,5]}, infer_datetime_format=True)
 
 # creating customer table
@@ -46,7 +42,7 @@ def age_group(d):
     elif d <= 35 and d > 18:
         return "ADULT"
     elif d <= 50 and d > 35:
-        return "MIDDLE-AGED"
+        return "MIDDLE"
     else:
         return "SENIOR"
 
@@ -66,7 +62,6 @@ del merged_df['Gender']
 merged_df = merged_df.rename(columns={'Transact ID':'transaction_id','Outlet':'outlet','Outlet District':'outlet_district',
                                       'Transact Details ID':'transact_details_id','Item':'item','Item Description':'item_desc',
                                       'Quantity':'qty','Price':'price','Spending':'spending'})
-
 
 # Time of day function
 def tod(d):
@@ -88,14 +83,16 @@ def tod(d):
 merged_df["time_of_day"] = merged_df["transaction_datetime"].apply(tod)
 
 # Get derived items
-derivedItems_df = pd.read_csv("../data/derived_items.csv")
+derivedItems_df = pd.read_csv("../data/item_table_w_cost.csv")
 
-derivedItems_df = derivedItems_df.rename(columns={'Item':'item','Item Description':'item_desc','Item Type':'item_type','Item Category':'item_cat'})
+# Rename derivedItems dataframe for consistency
+derivedItems_df = derivedItems_df.rename(columns={'Item':'item','Item Description':'item_desc','Item Type':'item_type','Item Category':'item_cat',
+                                                 'Price':'d_price'})
 derivedItems_df['item'] = derivedItems_df['item'].str.strip()
 merged_df['item'] = merged_df['item'].str.strip()
 merged_df = pd.merge(merged_df,derivedItems_df, 'left', 'item')
 
-# remove extra columns
+# remove extra columns, cleaning things up
 del merged_df['item_desc_y']
 
 # rename item_desc_x column to item_desc
@@ -108,7 +105,7 @@ merged_df = merged_df[merged_df['item_type'] != "TAKEAWAY"]
 merged_df['item_type'] = merged_df['item_type'].replace('Beverage','Drink')
 
 print(merged_df.groupby(['item_type']).size())
-print(merged_df.columns)
+
 grouped_df = merged_df.groupby(['transaction_id','item_type']).size()
 
 # Function to guess number of persons
@@ -160,6 +157,7 @@ for transaction, subframe in grouped_df.groupby(level=0):
 
 # Create numpax_df
 numpax_df = pd.DataFrame(list(output.items()))
+# Rename columns for readability
 numpax_df  = numpax_df.rename(columns={0:'transaction_id',1:'numpax'})
 
 # Set variable type as int, to be safe
@@ -182,11 +180,17 @@ merged_df = pd.merge(merged_df, numpax_df, how='left', left_on='transaction_id',
 
 # Create new dataframe of total quantity of items ordered for each age_group, tod, numpax profile
 profile_item_total_df =  merged_df.groupby(['age_group','time_of_day','group_category'])['qty'].sum().reset_index()
-item_total_df = merged_df.groupby(['age_group','time_of_day','group_category','item_desc','item_type', 'item_cat','price'])\
+item_total_df = merged_df.groupby(['age_group','time_of_day','group_category','item_desc','item_type', 'item_cat','d_price'])\
     .size().reset_index().rename(columns={0:'item_total'})
 
+item_total_df = item_total_df.rename(columns={'d_price':'price'})
+
 # Merge the two tables together
-profile_and_item_total_df = pd.merge(profile_item_total_df,item_total_df,how='left',on=['age_group','time_of_day'])
+profile_and_item_total_df = pd.merge(profile_item_total_df,item_total_df,how='left',on=['age_group','time_of_day','group_category'])
+
+temp_df = profile_and_item_total_df.ix[(profile_and_item_total_df.age_group == 'ADULT') &
+                                       (profile_and_item_total_df.time_of_day == 'BREAKFAST') &
+                                       (profile_and_item_total_df.group_category == 'COUPLE')]
 
 # Calculate utility scores
 profile_and_item_total_df['uscore'] = (profile_and_item_total_df['item_total'] / profile_and_item_total_df['qty']) * 10000
@@ -194,11 +198,11 @@ profile_and_item_total_df['uscore'] = (profile_and_item_total_df['item_total'] /
 # Modify Utility Scores, If main +25%, if Drink -50%
 main_mask = (profile_and_item_total_df['item_type'] == 'Main')
 main_valid = profile_and_item_total_df[main_mask]
-profile_and_item_total_df.loc[main_mask,'uscore'] == main_valid['uscore'] * 1.25
+profile_and_item_total_df.loc[main_mask,'uscore'] = main_valid['uscore'] * 1.25
 
 drink_mask = (profile_and_item_total_df['item_type'] == 'Drink')
 drink_valid = profile_and_item_total_df[drink_mask]
-profile_and_item_total_df.loc[drink_mask,'uscore'] == drink_valid['uscore'] * 0.5
+profile_and_item_total_df.loc[drink_mask,'uscore'] = drink_valid['uscore'] * 0.5
 
 # Round utility scores to nearest integer and set to type int
 profile_and_item_total_df['uscore'] = profile_and_item_total_df['uscore'].round()
@@ -209,8 +213,8 @@ profile_and_item_total_df['price'] = profile_and_item_total_df['price'].apply(la
 profile_and_item_total_df['price'] = profile_and_item_total_df['price'].astype(int)
 
 # Remove unwanted columns, again
-del profile_and_item_total_df['group_category_y']
-profile_and_item_total_df = profile_and_item_total_df.rename(columns={'group_category_x':'group_category'})
+# del profile_and_item_total_df['group_category_y']
+# profile_and_item_total_df = profile_and_item_total_df.rename(columns={'group_category_x':'group_category'})
 
 # Output DataFrame
 output_df = pd.DataFrame()
@@ -232,7 +236,20 @@ age_group_list = output_df['age_group'].unique().tolist()
 tod_list = output_df['time_of_day'].unique().tolist()
 grp_cat_list = output_df['group_category'].unique().tolist()
 
+
+dbname = 'y3optim'
+user = 'limshiq'
+pw = 'awesomeSQ'
+host = 'y3optim.cnlc0eowtsp7.ap-southeast-1.rds.amazonaws.com'
+port = '5432'
+# Open db connection
+engine = create_engine('postgresql+psycopg2://'+user+':'+pw+'@'+host+':'+port+'/'+dbname)
+conn = engine.connect()
+
+# Local path file
 outputpath = '../data/output/'
+
+# step through each category - sub category and query the table
 for ag in age_group_list:
     for tod in tod_list:
         for grp_cat in grp_cat_list:
@@ -240,5 +257,38 @@ for ag in age_group_list:
                                       (output_df.time_of_day == tod) &
                                       (output_df.group_category == grp_cat)]
 
-            file_name = str(ag)+"_"+str(tod)+"_"+str(grp_cat)
-            temp_df.ix[:,'uscore':'item_desc'].to_csv(outputpath+file_name+".csv")
+            file_name = str(ag)+"_"+str(tod)+"_"+str(grp_cat)+"_SUNNY"
+            temp_df.ix[:,'uscore':'item_desc'].to_csv(outputpath+file_name+".csv",header=False, index=False)
+            temp_df.ix[:, 'uscore':'item_desc'].to_sql(file_name,conn,if_exists='replace',index=False)
+
+# Modify uscore values for Soup*, Noodlesoup*, Drink;Hot, Porridge* for 100% increase
+# Soup;*
+soup_mask = (output_df['item_cat'].str.contains(r'^Soup;'))
+soup_valid = output_df[soup_mask]
+output_df.loc[soup_mask,'uscore'] = soup_valid['uscore'] * 2
+# Noodlesoup;*
+noodlesoup_mask = (output_df['item_cat'].str.contains(r'^Noodlesoup;'))
+noodlesoup_valid = output_df[noodlesoup_mask]
+output_df.loc[noodlesoup_mask,'uscore'] = noodlesoup_valid['uscore'] * 2
+# Drink;Hot*
+hotdrink_mask = (output_df['item_cat'].str.contains(r'^Drink;Hot'))
+hotdrink_valid = output_df[hotdrink_mask]
+output_df.loc[hotdrink_mask,'uscore'] = hotdrink_valid['uscore'] * 2
+# Porridge;*
+porridge_mask = (output_df['item_cat'].str.contains(r'^Porridge;'))
+porridge_valid = output_df[porridge_mask]
+output_df.loc[porridge_mask,'uscore'] = porridge_valid['uscore'] * 2
+
+for ag in age_group_list:
+    for tod in tod_list:
+        for grp_cat in grp_cat_list:
+            temp_df = output_df.ix[(output_df.age_group == ag) &
+                                      (output_df.time_of_day == tod) &
+                                      (output_df.group_category == grp_cat)]
+
+            file_name = str(ag)+"_"+str(tod)+"_"+str(grp_cat)+"_RAINY"
+            temp_df.ix[:,'uscore':'item_desc'].to_csv(outputpath+file_name+".csv",header=False, index=False)
+            temp_df.ix[:, 'uscore':'item_desc'].to_sql(file_name, conn, if_exists='replace', index=False)
+
+# Close connection
+conn.close()
