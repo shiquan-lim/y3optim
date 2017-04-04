@@ -1,6 +1,7 @@
 import sys
 import psycopg2
 import cgi
+import datetime
 
 hostname = 'y3optim.cnlc0eowtsp7.ap-southeast-1.rds.amazonaws.com'
 user = 'limshiq'
@@ -36,25 +37,33 @@ def knapsack(items, maxweight, ilist):
 
     return bestvalues[len(items)][maxweight], reconstruction
 
+def get_table_name(age, time, groupNum):
+	return 0
+
 
 if __name__ == '__main__':
-    # if len(sys.argv) != 5:
-    #     print('Please enter: main.py [budget] [group size] [your age] [dietary restrictions (x,y,z)]')
-    #     sys.exit(1)
+    if len(sys.argv) != 5:
+        print('Please enter: main.py [budget] [group size] [your age] [dietary restrictions (x,y,z)]')
+        sys.exit(1)
 
     myConnection = psycopg2.connect( host=hostname, user=user, password=password, dbname=dbname )
     cur = myConnection.cursor()
     cur.execute("""SELECT * from adult_breakfast_couple""")
     dbitems = cur.fetchall()
-    # print(dbitems[0][1])
 
-    maxweight = 1000
+    d = datetime.datetime.now().time().hour
+
+    maxweight = int(sys.argv[1]) * 100
+    groupNum = int(sys.argv[2])
+    age = int(sys.argv[3])
+    choice = sys.argv[4]
+
     items = [map(int, line[0:2]) for line in dbitems]
 
     bestvalue, reconstruction = knapsack(items, maxweight, dbitems)
 
     # print('Best possible value: {0}'.format(bestvalue))
-    print('Cost:', sum(int(row[1]) for row in reconstruction))
+    print('Cost: $', sum(int(row[1]) for row in reconstruction)/100)
     print('Items:')
     for value, weight, itype, cat, desc in reconstruction:
         print('V: {0}, W: {1}, T: {2}, C: {3}, D: {4}'.format(value, weight, itype, cat, desc))
