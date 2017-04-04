@@ -2,3 +2,5 @@ app/lib
 *.csv
 
 data/desc.xlsx
+
+*.zip
