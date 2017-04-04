@@ -1,4 +1,11 @@
 import sys
+import psycopg2
+
+hostname = 'y3optim.cnlc0eowtsp7.ap-southeast-1.rds.amazonaws.com'
+user = 'limshiq'
+password = 'awesomeSQ'
+dbname = 'y3optim'
+port = 5432
 
 def knapsack(items, maxweight, ilist):
     # Create an (N+1) by (W+1) 2-d list to contain the running values
@@ -13,54 +20,18 @@ def knapsack(items, maxweight, ilist):
 
     # Enumerate through the items and fill in the best-value table
     for i, (value, weight) in enumerate(items):
-        # Increment i, because the first row (0) is the case where no items
-        # are chosen, and is already initialized as 0, so we're skipping it
         i += 1
         for capacity in range(maxweight + 1):
-            # Handle the case where the weight of the current item is greater
-            # than the "running capacity" - we can't add it to the knapsack
             if weight > capacity:
                 bestvalues[i][capacity] = bestvalues[i - 1][capacity]
             else:
-                # Otherwise, we must choose between two possible candidate values:
-                # 1) the value of "running capacity" as it stands with the last item
-                #    that was computed; if this is larger, then we skip the current item
-                # 2) the value of the current item plus the value of a previously computed
-                #    set of items, constrained by the amount of capacity that would be left
-                #    in the knapsack (running capacity - item's weight)
                 candidate1 = bestvalues[i - 1][capacity]
                 candidate2 = bestvalues[i - 1][capacity - weight] + value
-
-                # Just take the maximum of the two candidates; by doing this, we are
-                # in effect "setting in stone" the best value so far for a particular
-                # prefix of the items, and for a particular "prefix" of knapsack capacities
                 bestvalues[i][capacity] = max(candidate1, candidate2)
 
-    # Reconstruction
-    # Iterate through the values table, and check
-    # to see which of the two candidates were chosen. We can do this by simply
-    # checking if the value is the same as the value of the previous row. If so, then
-    # we say that the item was not included in the knapsack (this is how we arbitrarily
-    # break ties) and simply move the pointer to the previous row. Otherwise, we add
-    # the item to the reconstruction list and subtract the item's weight from the
-    # remaining capacity of the knapsack. Once we reach row 0, we're done
     reconstruction = []
-
     i = len(items)
     j = maxweight
-
-    # print(ilist)
-    # temp = []
-
-    # for o in ilist:
-    #     temp.append(list(o))
-    # print(temp)
-
-    # while i > 0:
-    #     if bestvalues[i][j] != bestvalues[i - 1][j]:
-    #         reconstruction.append(temp[i - 1])
-    #         j -= temp[i - 1][1]
-    #     i -= 1
 
     while i > 0:
         if bestvalues[i][j] != bestvalues[i - 1][j]:
@@ -68,8 +39,6 @@ def knapsack(items, maxweight, ilist):
             j -= int(ilist[i - 1][1])
         i -= 1
 
-    # Reverse the reconstruction list, so that it is presented
-    # in the order that it was given
     reconstruction.reverse()
 
     # print(bestvalues)
@@ -87,12 +56,21 @@ if __name__ == '__main__':
     with open(filename) as f:
         lines = f.readlines()
 
-    maxweight = int(lines[0])
-    items = [map(int, line.split()[0:2]) for line in lines[1:]]
-    # ilist = [map(int, line.split()) for line in lines[1:]]
-    ilist = [line.split() for line in lines[1:]]
+    myConnection = psycopg2.connect( host=hostname, user=user, password=password, dbname=dbname )
+    cur = myConnection.cursor()
+    cur.execute("""SELECT * from adult_breakfast_couple""")
+    dbitems = cur.fetchall()
+    print(dbitems[0][1])
 
-    bestvalue, reconstruction = knapsack(items, maxweight, ilist)
+
+    # maxweight = int(lines[0])
+    maxweight = 1000
+    # items = [map(int, line.split(',')[0:2]) for line in lines[1:]]
+    items = [map(int, line[0:2]) for line in dbitems]
+    # ilist = [line.split(',') for line in lines[1:]]
+    # print(ilist)
+
+    bestvalue, reconstruction = knapsack(items, maxweight, dbitems)
 
     print('Best possible value: {0}'.format(bestvalue))
     print('Cost:', sum(int(row[1]) for row in reconstruction))
