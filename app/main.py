@@ -38,12 +38,43 @@ def knapsack(items, maxweight, ilist):
     return bestvalues[len(items)][maxweight], reconstruction
 
 def get_table_name(age, time, groupNum):
+	if(age < 18):
+		age = 'youth'
+	elif(age < 35):
+		age = 'adult'
+	elif(age < 50):
+		age = 'middle'
+	else:
+		age = 'elderly'
+
+	if(time < 6):
+		time = 'supper'
+	elif(time < 12):
+		time = 'breakfast'
+	elif(time < 18):
+		time = 'lunch'
+	else:
+		time = 'dinner'
+
+	if(groupNum == 1):
+		groupNum = 'single'
+	elif(groupNum == 2):
+		groupNum = 'couple'
+	else:
+		groupNum = 'group'
+
+	print(age+'_'+time+'_'+groupNum)
+
 	return 0
 
 
 if __name__ == '__main__':
     if len(sys.argv) != 5:
         print('Please enter: main.py [budget] [group size] [your age] [dietary restrictions (x,y,z)]')
+        with open('messages/welcome.txt') as f:
+        	lines = f.readlines()
+        for line in lines:
+        	print(line)
         sys.exit(1)
 
     myConnection = psycopg2.connect( host=hostname, user=user, password=password, dbname=dbname )
@@ -53,10 +84,17 @@ if __name__ == '__main__':
 
     d = datetime.datetime.now().time().hour
 
+    get_table_name(int(sys.argv[3]), d, int(sys.argv[2]))
+
     maxweight = int(sys.argv[1]) * 100
-    groupNum = int(sys.argv[2])
-    age = int(sys.argv[3])
     choice = sys.argv[4]
+
+    if(choice != '-'):
+    	cList = choice.split(',')
+    	for c in cList:
+    		for i in dbitems:
+    			if (i[2]=='Main' or i[2]=='Side') and i[3].find(c):
+    				print (i[2], i[3])
 
     items = [map(int, line[0:2]) for line in dbitems]
 

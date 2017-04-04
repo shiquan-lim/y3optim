@@ -1,0 +1,17 @@
+Welcome to the beta of YouFood 1.0,
+developed by Marksmen2.0 for Y3technologies.
+
+To use this application, please enter the following information
+
+main.py [budget] [group size] [your age] [food preferences (x,y,z)]
+
+Please adhere to this format.
+Food preferences can be any (0 - many) of the following categories
+
+Chicken
+Pork
+Seafood
+Beef
+Vegetarian
+
+If you have no preferences, you may simply enter "-".
