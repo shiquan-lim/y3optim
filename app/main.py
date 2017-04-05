@@ -2,6 +2,7 @@ import sys
 import psycopg2
 import cgi
 import datetime
+from psycopg2.extensions import AsIs
 
 hostname = 'y3optim.cnlc0eowtsp7.ap-southeast-1.rds.amazonaws.com'
 user = 'limshiq'
@@ -37,54 +38,53 @@ def knapsack(items, maxweight, ilist):
 
     return bestvalues[len(items)][maxweight], reconstruction
 
-def get_table_name(age, time, groupNum):
+def get_table_name(age, time, groupNum, weather):
 	if(age < 18):
-		age = 'youth'
+		age = 'YOUTH'
 	elif(age < 35):
-		age = 'adult'
+		age = 'ADULT'
 	elif(age < 50):
-		age = 'middle'
+		age = 'MIDDLE'
 	else:
-		age = 'elderly'
+		age = 'SENIOR'
 
 	if(time < 6):
-		time = 'supper'
+		time = 'SUPPER'
 	elif(time < 12):
-		time = 'breakfast'
+		time = 'BREAKFAST'
 	elif(time < 18):
-		time = 'lunch'
+		time = 'LUNCH'
 	else:
-		time = 'dinner'
+		time = 'DINNER'
 
 	if(groupNum == 1):
-		groupNum = 'single'
+		groupNum = 'SOLO'
 	elif(groupNum == 2):
-		groupNum = 'couple'
+		groupNum = 'COUPLE'
 	else:
-		groupNum = 'group'
+		groupNum = 'GROUP'
 
-	print(age+'_'+time+'_'+groupNum)
-
-	return 0
+	return(age+'_'+time+'_'+groupNum+'_'+weather.upper())
 
 
 if __name__ == '__main__':
-    if len(sys.argv) != 5:
-        print('Please enter: main.py [budget] [group size] [your age] [dietary restrictions (x,y,z)]')
+    if len(sys.argv) != 6:
+        print('Please enter: main.py [budget] [group size] [your age] [dietary restrictions (x,y,z)] [weather]')
         with open('messages/welcome.txt') as f:
         	lines = f.readlines()
         for line in lines:
         	print(line)
         sys.exit(1)
 
-    myConnection = psycopg2.connect( host=hostname, user=user, password=password, dbname=dbname )
-    cur = myConnection.cursor()
-    cur.execute("""SELECT * from adult_breakfast_couple""")
-    dbitems = cur.fetchall()
-
     d = datetime.datetime.now().time().hour
 
-    get_table_name(int(sys.argv[3]), d, int(sys.argv[2]))
+    profile = get_table_name(int(sys.argv[3]), d, int(sys.argv[2]), sys.argv[5])
+    print("Extracting from profile...",profile)
+
+    myConnection = psycopg2.connect( host=hostname, user=user, password=password, dbname=dbname )
+    cur = myConnection.cursor()
+    cur.execute('SELECT * FROM "%(table)s"', {"table": AsIs(profile)})
+    dbitems = cur.fetchall()
 
     maxweight = int(sys.argv[1]) * 100
     choice = sys.argv[4]
