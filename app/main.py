@@ -78,7 +78,7 @@ if __name__ == '__main__':
 
     d = datetime.datetime.now().time().hour
 
-    profile = get_table_name(int(sys.argv[3]), d, int(sys.argv[2]), sys.argv[5])
+    profile = get_table_name(int(sys.argv[3]), 20, int(sys.argv[2]), sys.argv[5])
     print("Extracting from profile...",profile)
 
     myConnection = psycopg2.connect( host=hostname, user=user, password=password, dbname=dbname )
@@ -88,17 +88,20 @@ if __name__ == '__main__':
 
     maxweight = int(sys.argv[1]) * 100
     choice = sys.argv[4]
+    newlist = []
 
     if(choice != '-'):
-    	cList = choice.split(',')
-    	for c in cList:
-    		for i in dbitems:
-    			if (i[2]=='Main' or i[2]=='Side') and i[3].find(c):
-    				print (i[2], i[3])
+        for i in dbitems:
+            ingredients = i[3].split(';')
+            cList = choice.split(',')
+            if (set(cList) & set(ingredients)) or (i[2] != 'Side' and i[2] != 'Main'):
+                newlist.append(i)
+    else:
+        newlist = dbitems
+                
+    items = [map(int, line[0:2]) for line in newlist]
 
-    items = [map(int, line[0:2]) for line in dbitems]
-
-    bestvalue, reconstruction = knapsack(items, maxweight, dbitems)
+    bestvalue, reconstruction = knapsack(items, maxweight, newlist)
 
     # print('Best possible value: {0}'.format(bestvalue))
     print('Cost: $', sum(int(row[1]) for row in reconstruction)/100)

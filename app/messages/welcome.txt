@@ -10,6 +10,7 @@ Food preferences can be any (0 - many) of the following categories
 - Chicken
 - Pork
 - Seafood
+- Fish
 - Beef
 - Vegetarian
 If you have no preferences, you may simply enter "-".
