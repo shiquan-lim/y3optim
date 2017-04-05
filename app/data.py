@@ -4,7 +4,7 @@ from sqlalchemy import create_engine
 from datetime import datetime
 
 # pull in raw data file
-file = '../data/data_final.csv'
+file = '../data/data_final_v2.csv'
 transaction_df = pd.read_csv(file, engine='c',parse_dates={'transaction_datetime':[4,5]}, infer_datetime_format=True)
 
 # creating customer table
@@ -185,24 +185,35 @@ item_total_df = merged_df.groupby(['age_group','time_of_day','group_category','i
 
 item_total_df = item_total_df.rename(columns={'d_price':'price'})
 
-# Merge the two tables together
+# Get average price of each item_cat for each profile
+profile_item_total_cost = merged_df.groupby(['age_group', 'time_of_day','group_category','item_type'])['d_price'].mean().reset_index()
+
+# Rename column for clarity
+profile_item_total_cost = profile_item_total_cost.rename(columns={'d_price':'item_type_mean_p'})
+
+# Merge with item_total_df
+item_total_df = item_total_df.merge(profile_item_total_cost,how='left',on=['age_group','time_of_day',
+                                                                           'group_category','item_type'])
+
+# Merge the item_total_df and profile_item_total_df tables together
 profile_and_item_total_df = pd.merge(profile_item_total_df,item_total_df,how='left',on=['age_group','time_of_day','group_category'])
 
-temp_df = profile_and_item_total_df.ix[(profile_and_item_total_df.age_group == 'ADULT') &
-                                       (profile_and_item_total_df.time_of_day == 'BREAKFAST') &
-                                       (profile_and_item_total_df.group_category == 'COUPLE')]
-
 # Calculate utility scores
-profile_and_item_total_df['uscore'] = (profile_and_item_total_df['item_total'] / profile_and_item_total_df['qty']) * 10000
+profile_and_item_total_df['uscore'] = (profile_and_item_total_df['item_total'] / profile_and_item_total_df['qty']) \
+                                      * profile_and_item_total_df['item_type_mean_p'] * 10000
 
-# Modify Utility Scores, If main +25%, if Drink -50%
+# Modify Utility Scores, If main +300%, if Drink -50%
 main_mask = (profile_and_item_total_df['item_type'] == 'Main')
 main_valid = profile_and_item_total_df[main_mask]
-profile_and_item_total_df.loc[main_mask,'uscore'] = main_valid['uscore'] * 1.25
+profile_and_item_total_df.loc[main_mask,'uscore'] = main_valid['uscore'] * 1
 
 drink_mask = (profile_and_item_total_df['item_type'] == 'Drink')
 drink_valid = profile_and_item_total_df[drink_mask]
-profile_and_item_total_df.loc[drink_mask,'uscore'] = drink_valid['uscore'] * 0.5
+profile_and_item_total_df.loc[drink_mask,'uscore'] = drink_valid['uscore'] * 0.25
+
+side_mask = (profile_and_item_total_df['item_type'] == 'Side')
+side_valid = profile_and_item_total_df[side_mask]
+profile_and_item_total_df.loc[side_mask,'uscore'] = side_valid['uscore'] * 0.5
 
 # Round utility scores to nearest integer and set to type int
 profile_and_item_total_df['uscore'] = profile_and_item_total_df['uscore'].round()
@@ -258,7 +269,7 @@ for ag in age_group_list:
                                       (output_df.group_category == grp_cat)]
 
             file_name = str(ag)+"_"+str(tod)+"_"+str(grp_cat)+"_SUNNY"
-            temp_df.ix[:,'uscore':'item_desc'].to_csv(outputpath+file_name+".csv",header=False, index=False)
+            temp_df.ix[:,'uscore':'item_desc'].to_csv(outputpath+file_name+".csv",header=True, index=False)
             temp_df.ix[:, 'uscore':'item_desc'].to_sql(file_name,conn,if_exists='replace',index=False)
 
 # Modify uscore values for Soup*, Noodlesoup*, Drink;Hot, Porridge* for 100% increase
@@ -287,7 +298,7 @@ for ag in age_group_list:
                                       (output_df.group_category == grp_cat)]
 
             file_name = str(ag)+"_"+str(tod)+"_"+str(grp_cat)+"_RAINY"
-            temp_df.ix[:,'uscore':'item_desc'].to_csv(outputpath+file_name+".csv",header=False, index=False)
+            temp_df.ix[:,'uscore':'item_desc'].to_csv(outputpath+file_name+".csv",header=True, index=False)
             temp_df.ix[:, 'uscore':'item_desc'].to_sql(file_name, conn, if_exists='replace', index=False)
 
 # Close connection
