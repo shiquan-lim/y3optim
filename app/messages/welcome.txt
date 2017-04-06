@@ -1,7 +1,7 @@
 Welcome to the beta of YouFood 1.0,
 developed by Marksmen2.0 for Y3technologies.
 To use this application, please enter the following information
-main.py [budget] [group size] [your age] [food preferences (x,y,z)] [weather]
+main.py [budget] [group size] [your age] [food preferences (x,y,z)] [weather] [verbose (1/0)]
 Please adhere to this format.
 Budget => allowable expenditure in dollars.
 Group size => Number of diners
