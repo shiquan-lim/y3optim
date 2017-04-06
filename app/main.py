@@ -68,8 +68,8 @@ def get_table_name(age, time, groupNum, weather):
 
 
 if __name__ == '__main__':
-    if len(sys.argv) != 6:
-        print('Please enter: main.py [budget] [group size] [your age] [dietary restrictions (x,y,z)] [weather]')
+    if len(sys.argv) != 7:
+        print('Please enter: main.py [budget] [group size] [your age] [dietary restrictions (x,y,z)] [weather] [verbose (1/0)]')
         with open('messages/welcome.txt') as f:
         	lines = f.readlines()
         for line in lines:
@@ -104,9 +104,14 @@ if __name__ == '__main__':
     bestvalue, reconstruction = knapsack(items, maxweight, newlist)
 
     # print('Best possible value: {0}'.format(bestvalue))
-    print('Cost: $', sum(int(row[1]) for row in reconstruction)/100)
-    print('Items:')
-    for value, weight, itype, cat, desc in reconstruction:
-        print('V: {0}, W: {1}, T: {2}, C: {3}, D: {4}'.format(value, weight, itype, cat, desc))
+    if(int(sys.argv[6])==1):
+        print('Cost: $', sum(int(row[1]) for row in reconstruction)/100)
+        print('Items:')
+        for value, weight, itype, cat, desc in reconstruction:
+            print('V: {0}, W: {1}, T: {2}, C: {3}, D: {4}'.format(value, weight, itype, cat, desc))
+    else:
+        print('Your recommended menu expenditure: $', sum(int(row[1]) for row in reconstruction)/100)
+        for value, weight, itype, cat, desc in reconstruction:
+            print('{4}, ${1}'.format(value, weight/100, itype, cat, desc))
 
 
