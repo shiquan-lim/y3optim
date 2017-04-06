@@ -78,7 +78,7 @@ if __name__ == '__main__':
 
     d = datetime.datetime.now().time().hour
 
-    profile = get_table_name(int(sys.argv[3]), 20, int(sys.argv[2]), sys.argv[5])
+    profile = get_table_name(int(sys.argv[3]), d, int(sys.argv[2]), sys.argv[5])
     print("Extracting from profile...",profile)
 
     myConnection = psycopg2.connect( host=hostname, user=user, password=password, dbname=dbname )
