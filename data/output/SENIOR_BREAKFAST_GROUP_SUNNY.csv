@@ -1,0 +1,107 @@
+uscore,price,item_type,item_cat,item_desc
+277,667,Dessert,Dessert;Cold,AlmondCream Glutinous Ball
+348,1515,Main,BakedRice;Seafood,BAKED RICE EBI
+421,545,Side,Dimsum;Pork,BBQ Pork Bun
+1044,1515,Main,Bakedrice;Beef,BP Beef Bk Rice
+348,1273,Main,Western;Chicken,BP Chix Chop & Fries
+1392,1273,Main,Spaghetti;Chicken,BP Chix Spag
+348,1515,Main,Spaghetti;Pork,Baked Pork Chop Cream Spag
+757,667,Side,Dimsum;Pork,Beancurd Skin Prawn Roll
+84,1151,Side,Vegetable;Seafood,Belacan 4 S.Bean
+84,352,Side,Bread,Bo Lo Bun
+696,1188,Main,Noodlesoup;Beef,Braised Beef Brisket Soup Noodles
+348,1200,Main,Noodle;Chicken,CHICKEN CHOP EGG DRY NOODLE
+1739,1636,Main,Noodle;Seafood,CRISPY PRAWN NOODLE
+1392,1030,Main,Porridge;Pork,Cent Egg Pork Por
+1044,1442,Main,Spaghetti;Chicken,Chicken Chop Cream Spag
+348,1394,Main,Noodle;Chicken,Chicken Dry Curry Ramen
+2087,1273,Main,Friedrice;Chicken,Chicken Flos Fried Rice
+348,1321,Main,Rice;Chicken,Chicken Hot Pot Rice
+1044,909,Main,Soup;Chicken,Chicken Macaroni Soup
+696,1394,Main,Noodlesoup;Chicken,Chicken Papaya Soup Beehoon
+106,206,Drink,Drink;Hot,Chinese Tea
+1044,1515,Main,Bakedrice;Chicken,Chix Chop Bk Rice
+589,594,Side,Dimsum;Chicken,Chix Feet
+84,594,Side,Fingerfood;Chicken,Chix Wing BP
+348,1442,Main,Spaghetti;Chicken,Chs Bk Pork Chop Spag
+348,1200,Main,Noodle;Pork,Chye Poh N Floss Dry Noodles
+277,836,Dessert,Dessert;Cold,Coffee-Tea Snow Ice
+53,352,Drink,Drink;Cold,Coke
+27,73,Drink,Drink;Cold,Cold / Iced Water
+168,594,Side,Bread;Sweet,Condensed & Peanut TT
+336,473,Side,Dimsum;Chicken,Custard Bun
+84,1151,Side,Fingerfood;Seafood,Deep-fried Prawns with Mango sauce
+168,473,Side,Bread;Savoury,Egg & Ham Sandwich
+168,2364,Side,Bread;Sweet,F.Toast Ice Cream
+1392,1394,Main,Western;Fish,Fish & Chips
+1392,1273,Main,Noodle;Fish,Fish Egg Sauteed HF
+696,1394,Main,Noodlesoup;Fish,Fish Papaya Soup Beehoon
+696,1273,Main,Rice;Fish,Fish Slice Muifan
+1044,1030,Main,Porridge;Fish,Fish Slice Por
+84,594,Side,Bread;Sweet,French Toast
+106,352,Drink,Drink;Hot,Fresh Soy Milk
+252,594,Side,Fingerfood;Chicken,HAM BO LO BUN
+696,944,Main,Noodlesoup;Pork,Ham & Egg Soup Ndl
+925,594,Side,Dimsum;Seafood,Har Gao
+277,1914,Dessert,Dessert;Cold,Homemade Cold Beancurd
+372,424,Drink,Drink;Hot,Hot Coffee-Tea
+27,473,Drink,Drink;Hot,Hot Honey Green Tea
+106,473,Drink,Drink;Hot,Hot Honey with Lemon
+53,545,Drink,Drink;Cold,Ice Milo Dinosaur
+106,473,Drink,Drink;Cold,Iced Coffee-Tea
+27,836,Drink,Drink;Cold,Iced Coffee-Tea Float
+27,594,Drink,Drink;Cold,Iced Honey Green Tea
+27,594,Drink,Drink;Cold,Iced Lemon Tea
+53,667,Drink,Drink;Cold,Iced Lychee Tea
+133,473,Drink,Drink;Cold,Iced Milk Tea
+80,473,Drink,Drink;Cold,Iced Soy Milk
+252,352,Side,Bread;Sweet,Kaya Butter Bread
+84,424,Side,Bread;Savoury,Kaya Butter Bread + Kopi
+239,206,Drink,Drink;Hot,Kopi
+168,473,Side,Bread;Savoury,L.Meat'N'Egg S'wich
+27,473,Drink,Drink;Hot,LEMON COKE
+696,1273,Main,Spaghetti;Pork,Luncheon Mushrm Cream Spag
+84,473,Side,Bread;Savoury,Luncheon N Egg Sandwich
+348,1067,Main,Noodlesoup;Pork,LuncheonMeatSoup Ndl
+277,836,Dessert,Dessert;Cold,Mango Pomelo
+277,909,Dessert,Dessert;Cold,Mango SnowIce
+213,424,Drink,Drink;Hot,Milk Tea
+53,229,Drink,Drink;Hot,Milo
+348,1200,Main,Spaghetti;Vegetarian,Mushroom Cream Spag
+505,788,Side,Dimsum;Pork,Pan Fried Dumpling
+27,1430,Drink,Drink;Cold,Peach Ice-blended
+84,594,Side,Bread;Sweet,Peanut Butter Milk Thick Toast
+1392,1394,Main,Noodle;Pork,Pork Chop Bee Hoon
+696,1515,Main,Bakedrice;Pork,Pork Chop Bk Rice
+348,1394,Main,Rice;Pork,Pork Chop Frag Rice
+348,1030,Main,Porridge;Pork,Pork N Century Egg Congee
+348,1394,Main,Noodle;Pork,Pork Ribs BH
+84,836,Side,Fingerfood;Chicken,Prawn Paste Chicken
+27,594,Drink,Drink;Cold,RAINBOW SPRITE
+505,594,Side,Dimsum;Pork,Radish Cake
+696,1394,Main,Rice;Pork,SH Pork Chop Rice
+696,1515,Main,Noodle;Duck,SMOKED DUCK DRY CURRY RAMEN
+27,594,Drink,Drink;Cold,SOUR PLUM COKE
+1392,1273,Main,Noodle;Pork;Seafood,SPECIAL STIR FRIED BEE HOON
+252,594,Side,Dimsum;Pork,SPRING ROLL
+696,1273,Main,Friedrice;Seafood,Sambal Seafood Fried Rice
+696,1151,Main,Porridge;Seafood,Sampan Congee
+696,1273,Main,Noodle;Seafood,Seafood Egg Hor Fun
+348,1273,Main,Rice;Seafood,Seafood Muifan
+696,1273,Main,Noodle;Seafood,Seafood Sauteed HF
+1177,545,Side,Dimsum;Seafood;Pork,Siew Mai
+1739,1394,Main,Noodle;Pork,Signature Fried Noodles
+1739,1394,Main,Friedrice;Pork;Seafood;Chicken,Signature Fried Rice
+1392,1200,Main,Porridge;Seafood,Sliced Empress Congee
+348,1273,Main,Noodle;Fish,Sliced Fish Egg Hor Fun
+168,352,Side,Bread,Soft Boiled Eggs
+27,352,Drink,Drink;Cold,Sprite
+348,944,Main,Noodlesoup;Pork,Spy P.Dices Soup Ndl
+168,594,Side,Dimsum;Pork,Steam Pork Spare Ribs
+133,206,Drink,Drink;Hot,Teh
+696,1030,Main,Noodle;Vegetarian,VEGETARIAN HOR FUN
+348,1151,Main,Noodle;Vegetarian,VEGETARIAN RAMEN
+1044,1079,Main,Noodle;Pork;Seafood,Wanton Soup Noodle
+53,73,Drink,Drink;Hot,Warm Water
+1392,1394,Main,Rice;Chicken,Yao Ma Tei Chix Rice
+80,388,Drink,Drink;Hot,Yuzu Tea

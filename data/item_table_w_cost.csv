@@ -1,0 +1,171 @@
+Item,Item Description,Item Type,Item Category,Price
+1,Cold / Iced Water,Drink,Drink;Cold,0.73
+2,Warm Water,Drink,Drink;Hot,0.73
+11,Chs Bk Pork Chop Spag,Main,Spaghetti;Chicken,14.42
+14,BP Chicken Chop Spag,Main,Spaghetti;Chicken,12.73
+17,Fish Fillet Spag,Main,Spaghetti;Fish,12.73
+20,Baked Pork Chop Cream Spag,Main,Spaghetti;Pork,15.15
+21,Chicken Chop Cream Spag,Main,Spaghetti;Chicken,14.42
+22,Mushroom Cream Spag,Main,Spaghetti;Vegetarian,12
+23,Luncheon Mushrm Cream Spag,Main,Spaghetti;Pork,12.73
+24,SCALLOP CREAM SAUCE SPAGHETTI,Main,Spaghetti;Seafood,17.58
+34,Fish & Chips,Main,Western;Fish,13.94
+35,BP Chicken Chop,Main,Western;Chicken,12.73
+41,BAKED RICE EBI,Main,BakedRice;Seafood,15.15
+43,Pork Chop Bk Rice,Main,Bakedrice;Pork,15.15
+44,BP Beef Bk Rice,Main,Bakedrice;Beef,15.15
+45,Chix Chop Bk Rice,Main,Bakedrice;Chicken,15.15
+46,Fish Bk Rice,Main,Bakedrice;Fish,13.94
+47,Mush Bk Rice,Main,Baked Rice;Vegetarian,13.94
+48,BAKED RICE CURRY SLICED BEEF,Main,Baked Rice;Beef,15.15
+61,CRISPY PRAWN NOODLE,Main,Noodle;Seafood,16.36
+62,Seafood Egg Hor Fun,Main,Noodle;Seafood,12.73
+66,Sliced Fish Egg Hor Fun,Main,Noodle;Fish,12.73
+67,Signature Fried Noodles,Main,Noodle;Pork,13.94
+68,Fried Spare Ribs Bee Hoon,Main,Noodle;Pork,13.94
+74,Wanton Soup Noodle,Main,Noodle;Pork;Seafood,10.79
+76,Braised Beef brisket Noodles,Main,Noodle;Beef,12
+78,SPECIAL STIR FRIED BEE HOON,Main,Noodle;Pork;Seafood,12.73
+102,Kaya Butter Bread,Side,Bread;Sweet,3.52
+106,Peanut Butter Milk Thick Toast,Side,Bread;Sweet,5.94
+109,French Toast,Side,Bread;Sweet,5.94
+111,F.Toast Chicken Floss,Side,Bread;Savoury,7.88
+112,F.Toast Ice Cream,Side,Bread;Sweet,23.64
+121,Egg & Ham Sandwich,Side,Bread;Savoury,4.73
+126,Luncheon N Egg Sandwich,Side,Bread;Savoury,4.73
+127,Borsch Soup,Side,Soup;Beef,5.94
+129,Wanton Soup,Side,Soup;Pork;Seafood,7.15
+131,Soup Of The Day,Side,Soup,8.36
+203,CURRY BEEF BRISKET HOT POT WITH RICE,Main,Rice;Beef,13.94
+251,Yao Ma Tei Chix Rice,Main,Rice;Chicken,13.94
+254,Pork Chop Frag Rice,Main,Rice;Pork,13.94
+290,Ham Egg Toast N French Fries,Side,Bread;Pork,8.36
+292,Soft Boiled Eggs,Side,Bread,3.52
+293,Chicken Macaroni Soup,Main,Soup;Chicken,9.09
+294,Seafood and Slice Pork Macaroni Soup,Main,Soup;Seafood;Pork,10.3
+302,Deep-fried Prawns with Mango sauce,Side,Fingerfood;Seafood,11.51
+305,F.Fries Curry Mayo,Side,Fingerfood;Vegetarian,5.94
+306,Bo Lo Bun,Side,Bread,3.52
+307,Prawn Paste Chicken,Side,Fingerfood;Chicken,8.36
+312,Chicken with Seaweed,Side,Fingerfood;Chicken,7.15
+313,HAM BO LO BUN,Side,Fingerfood;Chicken,5.94
+315,HONEY CHICKEN WING (5pcs),Side,Fingerfood;Chicken,7.15
+401,Siew Mai,Side,Dimsum;Seafood;Pork,5.45
+402,Steam Pork Spare Ribs,Side,Dimsum;Pork,5.94
+403,Beancurd Skin Prawn Roll,Side,Dimsum;Pork,6.67
+404,Custard Bun,Side,Dimsum;Chicken,4.73
+407,Radish Cake,Side,Dimsum;Pork,5.94
+411,Pan Fried Dumpling,Side,Dimsum;Pork,7.88
+412,Har Gao,Side,Dimsum;Seafood,5.94
+413,SPRING ROLL,Side,Dimsum;Pork,5.94
+414,Chicken Feet,Side,Dimsum;Chicken,5.94
+418,BBQ Pork Bun,Side,Dimsum;Pork,5.45
+450,Chicken In A Basket(3PCS),Side,Dimsum;Chicken,13.94
+451,Chicken In A Basket(5PCS),Side,Dimsum;Chicken,21.21
+501,LuncheonMeatSoup Ndl,Main,Noodlesoup;Pork,10.67
+503,Spy P.Dices Soup Ndl,Main,Noodlesoup;Pork,9.45
+507,Ham & Egg Soup Ndl,Main,Noodlesoup;Pork,9.45
+509,Braised Beef Brisket Soup Noodles,Main,Noodlesoup;Beef,11.88
+521,VEGETARIAN HOR FUN,Main,Noodle;Vegetarian,10.3
+522,VEGETARIAN RAMEN,Main,Noodle;Vegetarian,11.51
+545,Chicken Floss Egg Fried Rice,Main,Friedrice;Chicken,12.73
+546,Diced Pork Fried Rice,Main,Friedrice;Pork,12.73
+548,Sambal Seafood Fried Rice,Main,Friedrice;Seafood,12.73
+549,Signature Fried Rice,Main,Friedrice;Pork;Seafood;Chicken,13.94
+552,Mango Pomelo,Dessert,Dessert;Cold,8.36
+553,Mango SnowIce,Dessert,Dessert;Cold,9.09
+555,Red Bean Snow,Dessert,Dessert;Cold,9.09
+556,Watermelon 'N' Jelly,Dessert,Dessert;Cold,7.88
+560,Coffee-Tea Snow Ice,Dessert,Dessert;Cold,8.36
+607,Chye Poh N Floss Dry Noodles,Main,Noodle;Pork,12
+608,CHICKEN CHOP EGG DRY NOODLE,Main,Noodle;Chicken,12
+631,Seafood Muifan,Main,Rice;Seafood,12.73
+632,Fish Slice Muifan,Main,Rice;Fish,12.73
+701,Chinese Tea,Beverage,Drink;Hot,2.06
+702,Milo,Beverage,Drink;Hot,2.3
+704,Fresh Soy Milk,Beverage,Drink;Hot,3.52
+705,Kopi,Beverage,Drink;Hot,2.06
+709,Teh,Beverage,Drink;Hot,2.06
+713,Hot Coffee-Tea,Beverage,Drink;Hot,4.24
+715,Milk Tea,Beverage,Drink;Hot,4.24
+717,Hot Honey Green Tea,Beverage,Drink;Hot,4.73
+718,Hot Honey with Lemon,Beverage,Drink;Hot,4.73
+720,Yuzu Tea,Beverage,Drink;Hot,3.88
+722,LEMON COKE,Beverage,Drink;Hot,4.73
+751,Iced Milk Tea,Beverage,Drink;Cold,4.73
+753,Iced Coffee-Tea,Beverage,Drink;Cold,4.73
+758,Iced Soy Milk,Beverage,Drink;Cold,4.73
+761,Ice Milo Dinosaur,Beverage,Drink;Cold,5.45
+765,Fresh  Lime Juice,Beverage,Drink;Cold,5.94
+766,Iced Honey Green Tea,Beverage,Drink;Cold,5.94
+767,Iced Lychee Tea,Beverage,Drink;Cold,6.67
+768,Iced Peach Tea,Beverage,Drink;Cold,6.67
+769,Iced Lemon Tea,Beverage,Drink;Cold,5.94
+776,Watermelon Ice-Blended,Beverage,Drink;Cold,7.15
+781,Lychee Ice-blended,Beverage,Drink;Cold,7.15
+782,Peach Ice-blended,Beverage,Drink;Cold,14.3
+783,Iced Coffee-Tea Float,Beverage,Drink;Cold,8.36
+784,Iced Milk Tea Float,Beverage,Drink;Cold,8.36
+791,Iced Yuzu Tea,Beverage,Drink;Cold,6.67
+793,COKE FLOAT,Beverage,Drink;Cold,8.36
+794,ICED MILO FLOAT,Beverage,Drink;Cold,8.36
+795,SOUR PLUM COKE,Beverage,Drink;Cold,5.94
+797,RAINBOW SPRITE,Beverage,Drink;Cold,5.94
+808,Chicken Dry Curry Ramen,Main,Noodle;Chicken,13.94
+809,F'mented Pork Dry Curry Ramen,Main,Noodle;Chicken,13.94
+810,SMOKED DUCK DRY CURRY RAMEN,Main,Noodle;Duck,15.15
+818,Belacan 4 S.Bean,Side,Vegetable;Seafood,11.51
+820,Minced Kai Lan W Silver Fish,Side,Vegetable;Seafood,11.51
+821,Paoched Lettuce,Side,Vegetable;Vegetarian,10.3
+854,Sesame Cream Glutinous Ball,Dessert,Dessert;Cold,6.67
+855,AlmondCream Glutinous Ball,Dessert,Dessert;Cold,6.67
+857,Home-Made Cold Beancurd,Dessert,Dessert;Cold,3.52
+859,SOY MILK WITH GLUTINOUS BALL,Dessert,Dessert;Cold,6.67
+863,Beancurd w Mango,Dessert,Dessert;Cold,4.73
+902,Pork N Century Egg Congee,Main,Porridge;Pork,10.3
+903,Sampan Congee,Main,Porridge;Seafood,11.51
+904,Fish Slice Por,Main,Porridge;Fish,10.3
+906,Spicy Pork Por,Main,Porridge;Pork,10.3
+909,Sliced Empress Congee,Main,Porridge;Seafood,12
+941,LUNCHEON MEAT (2pcs),Side,Addons;Pork,2.42
+943,WHITE RICE,Side,Addons;Vegetarian,1.82
+1108,Chix Wing Japanese Sesame Sauce,Side,Fingerfood;Chicken,5.94
+1109,Chix Wing Honey Sweet Sauce,Side,Fingerfood;Chicken,5.94
+1110,Chix Wing Home-made Sour 'N' Spicy Powde,Side,Fingerfood;Chicken,5.94
+1134,Iced Grass Jelly,Beverage,Drink;Cold,3.52
+1136,Fruit Jelly Pudding,Dessert,Dessert;Cold,9.58
+1137,Chix Wing Nachos Cheese,Side,Fingerfood;Chicken,5.94
+1175,Homemade Cold Beancurd,Dessert,Dessert;Cold,19.15
+1201,Seafood Ee Noodle,Main,Noodle;Seafood,13.21
+1210,Chix Wing BP,Side,Fingerfood;Chicken,5.94
+1211,Spicy Sour Fries,Side,Fingerfood;Vegetarian,2.42
+1216,Chicken Hot Pot Rice,Main,Rice;Chicken,13.21
+1217,Fermented Pork Dry Noodle,Main,Noodle;Pork,12.73
+1227,Kaya Butter Bread + Kopi,Side,Bread;Savoury,4.24
+1232,Fried Wanton 3pcs,Side,Fingerfood;Seafood,1.21
+1263,Pumpkin Chix Chop Rice,Main,Rice;Chicken,10.67
+1283,Deep Fried Prawn (3pcs),Side,Fingerfood;Seafood,1000
+1286,Coke Float (Promo),Beverage,Drink;Cold,1.21
+1292,Luncheon Meat Fries,Side,Fingerfood;Pork,5.94
+215A,Pork Chop Noodle,Main,Noodle;Pork,13.94
+215B,Pork Chop Bee Hoon,Main,Noodle;Pork,13.94
+216B     ,Chicken Papaya Soup Beehoon,Main,Noodlesoup;Chicken,13.94
+217B,Fish Papaya Soup Beehoon,Main,Noodlesoup;Fish,13.94
+759C,Coke,Beverage,Drink;Cold,3.52
+759S,Sprite,Beverage,Drink;Cold,3.52
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
+,,,,
