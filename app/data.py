@@ -3,6 +3,16 @@ import numpy as np
 from sqlalchemy import create_engine
 from datetime import datetime
 
+# Database credentials
+dbname = 'y3optim'
+user = 'limshiq'
+pw = 'awesomeSQ'
+host = 'y3optim.cnlc0eowtsp7.ap-southeast-1.rds.amazonaws.com'
+port = '5432'
+
+# Local path file
+outputpath = '../data/output/'
+
 # pull in raw data file
 file = '../data/data_final_v2.csv'
 transaction_df = pd.read_csv(file, engine='c',parse_dates={'transaction_datetime':[4,5]}, infer_datetime_format=True)
@@ -248,17 +258,10 @@ tod_list = output_df['time_of_day'].unique().tolist()
 grp_cat_list = output_df['group_category'].unique().tolist()
 
 
-dbname = 'y3optim'
-user = 'limshiq'
-pw = 'awesomeSQ'
-host = 'y3optim.cnlc0eowtsp7.ap-southeast-1.rds.amazonaws.com'
-port = '5432'
+
 # Open db connection
 engine = create_engine('postgresql+psycopg2://'+user+':'+pw+'@'+host+':'+port+'/'+dbname)
 conn = engine.connect()
-
-# Local path file
-outputpath = '../data/output/'
 
 # step through each category - sub category and query the table
 for ag in age_group_list:
