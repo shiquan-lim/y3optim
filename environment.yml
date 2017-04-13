@@ -89,7 +89,6 @@ dependencies:
 - xz=5.2.2=1
 - zlib=1.2.8=3
 - docloud=1.0.235=py35_0
-- docplex=2.0.15=py35_0
 - pip:
   - ipython-genutils==0.1.0
   - jupyter-client==5.0.0
