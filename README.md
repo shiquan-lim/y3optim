@@ -80,3 +80,13 @@ Weather => Sunny or Rainy
 5. Go to script location, and activate the python environment with `source activate y3optim` (for Mac) or ```activate y3optim``` (for Windows).
 6. Run the script with `python data.py`
 7. You should see 96 tables and csv files in the database/directory specified in steps 1 and 3.
+
+# Benchmarking
+We benchmarked our model using a simple similarity test. The results of the test and method can be seen the [Model Performance Notebook](https://github.com/shiquan-lim/y3optim/blob/master/notebooks/Model%20Performance.ipynb)
+
+## Instructions for starting Jupyter Notebook
+1. Ensure that you have run through the steps in `Installation` to install the environment.
+2. Activate the python environment with `source activate y3optim` (for Mac) or `activate y3optim` (for Windows).
+3. Using terminal or command prompt, change the current directory to that of the notebook using `cd notebooks`
+4. Start the Jupyter Notebook with `jupyter notebook`
+
