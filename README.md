@@ -1,4 +1,4 @@
-#Y3 Technologies Optimisation App
+# Y3 Technologies Optimisation App
 
 - clone repo
 - navigate to project folder in terminal
