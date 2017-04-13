@@ -1,5 +1,5 @@
 # Installation
-----
+
 ## Y3 Technologies Optimisation App
 - clone repo
 - navigate to project folder in terminal
@@ -17,3 +17,10 @@
 - Open terminal, ```cd <directory of repo>```
 - Use ```conda env create --name <name of environment> --file spec-file.txt```
 - ```source activate <name of environment>``` (for mac) or ```activate <name of environment>``` (for windows) to activate the environment.
+
+# Usage
+
+## main.py
+- ```main.py``` is a command line application. To use the application, we assume that the user has set up the database and run the ```data.py``` script that will load the tables required by the application. </br>
+
+## data.py
