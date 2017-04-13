@@ -71,7 +71,7 @@ Weather => Sunny or Rainy
 ```
 
 ## data.py
-`data.py` is a utility script that takes in a `.csv` file containing the transaction data of customers at a given store. For this scrip to work we assume that the file is of similar format to that as [`data_final_v2.csv`](https://github.com/shiquan-lim/y3optim/blob/master/data/data_final_v2.csv)
+`data.py` is a utility script that takes in a `.csv` file containing the transaction data of customers at a given store. For this script to work we assume that the file is of similar format to that as [`data_final_v2.csv`](https://github.com/shiquan-lim/y3optim/blob/master/data/data_final_v2.csv)
 
 1. Using your favorite text editor, change the database credentials (`dbname`,`user`,`pw`,`host` and `port`) to your own.
 2. Change the `file` variable to the location of your input file.

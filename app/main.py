@@ -103,7 +103,6 @@ if __name__ == '__main__':
 
     bestvalue, reconstruction = knapsack(items, maxweight, newlist)
 
-    # print('Best possible value: {0}'.format(bestvalue))
     if(int(sys.argv[6])==1):
         print('Cost: $', sum(int(row[1]) for row in reconstruction)/100)
         print('Items:')
