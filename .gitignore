@@ -3,3 +3,5 @@ app/lib
 data/desc.xlsx
 
 *.zip
+
+.idea/workspace.xml
